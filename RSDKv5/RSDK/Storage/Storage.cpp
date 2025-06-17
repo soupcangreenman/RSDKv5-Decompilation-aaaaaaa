@@ -322,14 +322,19 @@ void RSDK::CopyStorage(uint32 **src, uint32 **dst)
         uint32 *dstPtr = *dst;
         *src           = *dst;
 
-        if (dataStorage[HEADER(dstPtr, HEADER_SET_ID)].entryCount < STORAGE_ENTRY_COUNT) {
-            dataStorage[HEADER(dstPtr, HEADER_SET_ID)].dataEntries[dataStorage[HEADER(dstPtr, HEADER_SET_ID)].entryCount]    = src;
-            dataStorage[HEADER(dstPtr, HEADER_SET_ID)].storageEntries[dataStorage[HEADER(dstPtr, HEADER_SET_ID)].entryCount] = *src;
+        // invalid index? check here to address crashes in certain cases
+        uint32 idx = HEADER(dstPtr, HEADER_SET_ID);
+        if (idx >= DATASET_MAX)
+          return;
 
-            ++dataStorage[HEADER(dstPtr, HEADER_SET_ID)].entryCount;
+        if (dataStorage[idx].entryCount < STORAGE_ENTRY_COUNT) {
+            dataStorage[idx].dataEntries[dataStorage[idx].entryCount]    = src;
+            dataStorage[idx].storageEntries[dataStorage[idx].entryCount] = *src;
 
-            if (dataStorage[HEADER(dstPtr, HEADER_SET_ID)].entryCount >= STORAGE_ENTRY_COUNT)
-                GarbageCollectStorage((StorageDataSets)HEADER(dstPtr, HEADER_SET_ID));
+            ++dataStorage[idx].entryCount;
+
+            if (dataStorage[idx].entryCount >= STORAGE_ENTRY_COUNT)
+                GarbageCollectStorage((StorageDataSets)idx);
         }
     }
 }

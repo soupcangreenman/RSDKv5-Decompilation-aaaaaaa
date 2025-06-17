@@ -29,6 +29,7 @@ set(RETRO_FILES
     RSDKv5/RSDK/Dev/Debug.cpp
     RSDKv5/RSDK/Storage/Storage.cpp
     RSDKv5/RSDK/Storage/Text.cpp
+    RSDKv5/RSDK/Graphics/Backend/RenderBackend.cpp
     RSDKv5/RSDK/Graphics/Drawing.cpp
     RSDKv5/RSDK/Graphics/Scene3D.cpp
     RSDKv5/RSDK/Graphics/Animation.cpp

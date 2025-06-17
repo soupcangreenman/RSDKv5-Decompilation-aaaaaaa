@@ -99,7 +99,7 @@ int32 RSDK::RunRetroEngine(int32 argc, char *argv[])
         RenderDevice::SetWindowTitle();
         RenderDevice::lastShaderID = -1;
 #else
-        if (RenderDevice::Init()) {
+        if (RenderDevice::Init() && InitRenderBackend()) {
             RenderDevice::isRunning = true;
         }
         else {
@@ -335,6 +335,7 @@ int32 RSDK::RunRetroEngine(int32 argc, char *argv[])
     ReleaseInputDevices();
     AudioDevice::Release();
     RenderDevice::Release(false);
+    FreeRenderBackend();
     SaveSettingsINI(false);
     SKU::ReleaseUserCore();
     ReleaseStorage();

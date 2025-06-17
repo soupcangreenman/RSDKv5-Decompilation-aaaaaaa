@@ -603,6 +603,7 @@ extern "C" {
 #include "RSDK/Storage/Text.hpp"
 #include "RSDK/Core/Reader.hpp"
 #include "RSDK/Cache/Cache.hpp"
+#include "RSDK/Graphics/Backend/RenderBackend.hpp"
 #include "RSDK/Graphics/Animation.hpp"
 #include "RSDK/Audio/Audio.hpp"
 #include "RSDK/Input/Input.hpp"
