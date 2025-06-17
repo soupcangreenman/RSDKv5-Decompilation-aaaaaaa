@@ -5,6 +5,8 @@ class SoftwareBackend : public RenderBackend {
   public:
     bool InitBackend() { return true; };
     void FreeBackend() { };
+    
+    void FillScreen(uint8 drawGroup, uint32 color, int32 alphaR, int32 alphaG, int32 alphaB);
 
     void DrawLine(uint8 drawGroup, int32 x1, int32 y1, int32 x2, 
                   int32 y2, uint32 color, int32 alpha, int32 inkEffect, 

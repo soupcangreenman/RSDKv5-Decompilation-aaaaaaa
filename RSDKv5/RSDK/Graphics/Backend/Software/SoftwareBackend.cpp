@@ -37,6 +37,35 @@
         frameBufferClr = pixel;
 
 
+void SoftwareBackend::FillScreen(uint8 drawGroup, uint32 color, 
+                                  int32 alphaR, int32 alphaG, int32 alphaB) {
+    alphaR = CLAMP(alphaR, 0x00, 0xFF);
+    alphaG = CLAMP(alphaG, 0x00, 0xFF);
+    alphaB = CLAMP(alphaB, 0x00, 0xFF);
+
+    if (alphaR + alphaG + alphaB) {
+        validDraw        = true;
+        uint16 clrBlendR = blendLookupTable[0x20 * alphaR + rgb32To16_B[(color >> 0x10) & 0xFF]];
+        uint16 clrBlendG = blendLookupTable[0x20 * alphaG + rgb32To16_B[(color >> 0x08) & 0xFF]];
+        uint16 clrBlendB = blendLookupTable[0x20 * alphaB + rgb32To16_B[(color >> 0x00) & 0xFF]];
+
+        uint16 *fbBlendR = &blendLookupTable[0x20 * (0xFF - alphaR)];
+        uint16 *fbBlendG = &blendLookupTable[0x20 * (0xFF - alphaG)];
+        uint16 *fbBlendB = &blendLookupTable[0x20 * (0xFF - alphaB)];
+
+        int32 cnt = currentScreen->size.y * currentScreen->pitch;
+        for (int32 id = 0; cnt > 0; --cnt, ++id) {
+            uint16 px = currentScreen->frameBuffer[id];
+
+            int32 R = fbBlendR[(px & 0xF800) >> 11] + clrBlendR;
+            int32 G = fbBlendG[(px & 0x7E0) >> 6] + clrBlendG;
+            int32 B = fbBlendB[px & 0x1F] + clrBlendB;
+
+            currentScreen->frameBuffer[id] = (B) | (G << 6) | (R << 11);
+        }
+    }
+}
+
 void SoftwareBackend::DrawLine(uint8 drawGroup, int32 x1, int32 y1, int32 x2, int32 y2,
                                uint32 color, int32 alpha, int32 inkEffect, 
                                bool32 screenRelative) {

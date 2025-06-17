@@ -21,6 +21,10 @@ class RenderBackend {
     virtual bool InitBackend() = 0;
     virtual void FreeBackend() = 0;
 
+    
+    virtual void FillScreen(uint8 drawGroup, uint32 color, int32 alphaR, int32 alphaG, 
+                            int32 alphaB) = 0;
+
     virtual void DrawLine(uint8 drawGroup, int32 x1, int32 y1, int32 x2, 
                   int32 y2, uint32 color, int32 alpha, int32 inkEffect, 
                   bool32 screenRelative) = 0; 
