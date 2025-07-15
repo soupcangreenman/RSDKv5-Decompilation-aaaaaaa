@@ -610,7 +610,7 @@ void RSDK::DrawCircle(int32 x, int32 y, int32 radius, uint32 color, int32 alpha,
 void RSDK::DrawCircleOutline(int32 x, int32 y, int32 innerRadius, int32 outerRadius, uint32 color, int32 alpha, int32 inkEffect,
                              bool32 screenRelative)
 {
-    renderBackend->DrawCircle(0, x, y, innerRadius, outerRadius, color, alpha, inkEffect);
+    renderBackend->DrawCircleOutline(0, x, y, innerRadius, outerRadius, color, alpha, inkEffect, screenRelative);
 }
 
 void RSDK::DrawFace(Vector2 *vertices, int32 vertCount, int32 r, int32 g, int32 b, int32 alpha, int32 inkEffect)

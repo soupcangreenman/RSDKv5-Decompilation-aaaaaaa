@@ -45,7 +45,7 @@ class SoftwareBackend : public RenderBackend {
     void DrawAniTile(uint8 drawGroup, uint16 sheetID, uint16 tileIndex, uint16 srcX, 
                   uint16 srcY, uint16 width, uint16 height);
 
-    bool32 LoadSpritesheetData(void* bufPtr, int id);
+    bool32 LoadSpritesheetData(ImageGIF* image, int id);
 
   protected:
     // TODO: stuff. i'm stuff

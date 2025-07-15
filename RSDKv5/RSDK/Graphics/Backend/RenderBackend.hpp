@@ -62,7 +62,7 @@ class RenderBackend {
     virtual void DrawAniTile(uint8 drawGroup, uint16 sheetID, uint16 tileIndex, uint16 srcX, 
                   uint16 srcY, uint16 width, uint16 height) = 0;
 
-    virtual bool32 LoadSpritesheetData(void* bufPtr, int id) = 0;
+    virtual bool32 LoadSpritesheetData(ImageGIF* image, int id) = 0;
   protected:
     Vector2 vertRefs[BACKEND_VERT_MAX];
 };
