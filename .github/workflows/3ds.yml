@@ -30,7 +30,7 @@ jobs:
           export DEVKITARM=$DEVKITPRO/devkitARM
           rm Game
           cd ..
-          git clone https://github.com/Rubberduckycooly/Sonic-Mania-Decompilation
+          git clone https://github.com/Rubberduckycooly/Sonic-Mania-Decompilation.git
           ln -s $(pwd)/RSDKv5-Decompilation/Sonic-Mania-Decompilation/dependencies/v5_3DS
           ln -s $(pwd)/Sonic-Mania-Decompilation/SonicMania\ RSDKv5-Decompilation/Game
 
