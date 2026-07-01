@@ -28,7 +28,6 @@ jobs:
         run: |
           export DEVKITPRO=/opt/devkitpro
           export DEVKITARM=$DEVKITPRO/devkitARM
-          rm Game
           cd ..
           git clone https://github.com/Rubberduckycooly/Sonic-Mania-Decompilation
           ln -s $(pwd)/RSDKv5-Decompilation/ Sonic-Mania-Decompilation/dependencies/v5_3DS
